@@ -8,11 +8,11 @@
 			"macFrameworkPath": [
 				"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
 			],
-			"compilerPath": "/usr/bin/clang++",
+			"compilerPath": "/opt/homebrew/bin/g++-12",
 			"cStandard": "c17",
 			"cppStandard": "c++17",
-			"intelliSenseMode": "macos-clang-arm64",
-			"configurationProvider": "ms-vscode.makefile-tools"
+			"intelliSenseMode": "${default}",
+			"configurationProvider": "ms-vscode.cpptools"
 		}
 	],
 	"version": 4

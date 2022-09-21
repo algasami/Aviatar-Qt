@@ -22,7 +22,7 @@ set(GLFW_LIB_LIST "glfw")
 set(GLFW_PATH /opt/homebrew/Cellar/glfw/3.3.8)
 set(QT_PATH /Users/algasami/Applications/Qt/6.3.2/macos)
 
-set(CMAKE_PREFIX_PATH ${QT_PATH}/lib/cmake)
+# set(CMAKE_PREFIX_PATH ${QT_PATH}/lib/cmake)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -70,6 +70,18 @@ else()
 endif()
 
 
+link_directories(${VULKAN_PATH}/bin;${VULKAN_PATH}/lib;${GLFW_PATH}/lib;)
+target_link_libraries(Aviatar-Qt PRIVATE
+Qt${QT_VERSION_MAJOR}::Widgets
+${VULKAN_LIB_LIST}
+${GLFW_LIB_LIST}
+)
+
+target_include_directories(Aviatar-Qt PRIVATE
+${GLFW_PATH}/include
+${VULKAN_PATH}/include
+${CMAKE_BINARY_DIR}/Test_autogen/include_Debug
+)
 
 set_target_properties(Aviatar-Qt PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
@@ -80,6 +92,7 @@ set_target_properties(Aviatar-Qt PROPERTIES
 )
 
 
+
 install(TARGETS Aviatar-Qt
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
@@ -87,18 +100,3 @@ install(TARGETS Aviatar-Qt
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Aviatar-Qt)
 endif()
-
-
-link_directories(${VULKAN_PATH}/bin;${VULKAN_PATH}/lib;${GLFW_PATH}/lib;)
-
-target_link_libraries(Aviatar-Qt PRIVATE
-Qt${QT_VERSION_MAJOR}::Widgets
-${VULKAN_LIB_LIST}
-${GLFW_LIB_LIST}
-)
-
-target_include_directories(Aviatar-Qt PRIVATE
-${CMAKE_BINARY_DIR}/Test_autogen/include_Debug;
-${GLFW_PATH}/include;
-${VULKAN_PATH}/include;
-)
