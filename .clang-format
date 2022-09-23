@@ -1,0 +1,7 @@
+BasedOnStyle: llvm
+IndentWidth: 4
+Language: Cpp
+ColumnLimit: 180
+
+DerivePointerAlignment: false
+PointerAlignment: Left
